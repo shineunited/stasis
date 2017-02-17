@@ -1,0 +1,10 @@
+{
+	"name": "shineunited/stasis",
+	"type": "library",
+	"keywords": [
+		"stasis",
+		"static",
+		"twig"
+	],
+	"license": "MIT"
+}
