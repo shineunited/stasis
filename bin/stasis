@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+include(__DIR__ . '/../vendor/autoload.php');
+
+use ShineUnited\Stasis\Application;
+
+
+$app = new Application();
+$app->run();
