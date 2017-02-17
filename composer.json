@@ -11,6 +11,7 @@
 		"php": ">=5.5.9",
 		"symfony/console": "^3.2",
 		"symfony/css-selector": "^3.2",
+		"symfony/debug": "^3.2",
 		"symfony/dom-crawler": "^3.2",
 		"symfony/filesystem": "^3.2",
 		"symfony/finder": "^3.2",
