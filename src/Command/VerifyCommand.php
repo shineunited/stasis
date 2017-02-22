@@ -83,6 +83,12 @@ class VerifyCommand extends BaseCommand {
 					$url = $node->getAttribute($attribute);
 
 					$components = parse_url($url);
+
+					if(!isset($components['path'])) {
+						// nothing to do here
+						continue;
+					}
+
 					if(isset($components['host']) || isset($components['scheme'])) {
 						// not a local url, skip
 						continue;
