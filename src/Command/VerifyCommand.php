@@ -96,7 +96,9 @@ class VerifyCommand extends BaseCommand {
 
 					// check path
 					$checkPath = false;
-					if($components['path']{0} == '/') {
+					if(strlen($components['path']) == 0) {
+						throw new \Exception(sprintf("Empty path in '%s'\n\n%s", $file->getRelativePathname(), $this->getNodeHTML($node, true)));
+					} elseif($components['path']{0} == '/') {
 						// root relative
 						$checkPath = $components['path'];
 					} else {
@@ -110,10 +112,23 @@ class VerifyCommand extends BaseCommand {
 					}
 
 					if(!$filesystem->exists($sourceDir . '/' . $checkPath)) {
-						throw new \Exception(sprintf("Missing path '%s' in '%s'", $checkPath, $file->getRelativePathname()));
+						throw new \Exception(sprintf("Missing path '%s' in '%s'\n\n%s", $checkPath, $file->getRelativePathname(), $this->getNodeHTML($node, true)));
 					}
 				}
 			}
 		}
+	}
+
+	private function getNodeHTML(\DOMNode $node, $trimLines = false) {
+		$rawHTML = $node->ownerDocument->saveHTML($node);
+		if(!$trimLines) {
+			return $rawHTML;
+		}
+
+		$rawLines = explode("\n", $rawHTML);
+		$trimmedLines = array_map('trim', $rawLines);
+		$trimmedHTML = implode("\n", $trimmedLines);
+
+		return $trimmedHTML;
 	}
 }
