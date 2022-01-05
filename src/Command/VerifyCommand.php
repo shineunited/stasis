@@ -98,7 +98,7 @@ class VerifyCommand extends BaseCommand {
 					$checkPath = false;
 					if(strlen($components['path']) == 0) {
 						throw new \Exception(sprintf("Empty path in '%s'\n\n%s", $file->getRelativePathname(), $this->getNodeHTML($node, true)));
-					} elseif($components['path']{0} == '/') {
+					} elseif(substr($components['path'], 0, 1) == '/') {
 						// root relative
 						$checkPath = $components['path'];
 					} else {
